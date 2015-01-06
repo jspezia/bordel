@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 14:24:35 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/06 15:47:24 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/06 20:01:33 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 #include <string>
 
-class Zombie {
+class Zombie
+{
 
 	public:
-		Zombie(std::string name, std::string type);
+		Zombie(void);
 		~Zombie(void);
 		void announce(void);
 
 	private:
-		std::string	const	_name;
-		std::string	const	_type;
+		std::string		_name;
+		std::string		_type;
 
 };
 

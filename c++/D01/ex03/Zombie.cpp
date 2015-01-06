@@ -6,16 +6,22 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 14:25:42 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/06 17:31:10 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/06 20:13:47 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include "Zombie.hpp"
 
-Zombie::Zombie(std::string name, std::string type) : _name(name), _type(type)
+Zombie::Zombie(void)
 {
+	if (std::rand() % 2 == 0)
+		this->_name = "Marco";
+	else
+		this->_name = "Polo";
+	this->_type = "zombie";
 	return;
 }
 
