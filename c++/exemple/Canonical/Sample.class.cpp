@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 19:00:45 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/07 20:48:19 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/08 10:05:35 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ Sample		&Sample::operator=(Sample const &rhs)
 
 std::ostream		&operator<<(std::ostream &o, Sample const &i)
 {
-	o << "the vlue of _fo is : " << i.getFoo();
+	o << "the value of _fo is : " << i.getFoo();
 
 	return o;
 }
