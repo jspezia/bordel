@@ -6,14 +6,15 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 19:00:45 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/08 10:05:35 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/08 12:09:04 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Sample.class.hpp"
 
-Sample::Sample(void) : _foo(0)
+Sample::Sample(void) :
+	_foo(0)
 {
 	std::cout << "Default Constructor called" << std::endl;
 	return;
