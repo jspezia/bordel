@@ -17,18 +17,18 @@ void hppCanon(std::string name, std::string file)
 	ofs << "#ifndef " << header << std::endl
 		<< "# define " << header << std::endl << std::endl
 		<< "#include <iostream>" << std::endl << std::endl
-		<< "class " << name <<" {" << std::endl << std::endl
-		<< "public:" << std::endl
+		<< "class " << name << std::endl << "{" << std::endl << std::endl
+		<< "public:" << std::endl << std::endl
 		<< "	" << name << "(void);" << std::endl
 		<< "	" << name << "(" << name << " const &src);" << std::endl
 		<< "	~" << name << "();" << std::endl
 		<< "	int getVal(void) const;" << std::endl << std::endl
-		<< "	" << name << " & operator=(" << name << " const &rhs);" << std::endl << std::endl
-		<< "private:" << std::endl
+		<< "	" << name << "		&operator=(" << name << " const &rhs);" << std::endl << std::endl
+		<< "private:" << std::endl << std::endl
 		<< "	int _val;" << std::endl
 		<< std::endl << "};" << std::endl << std::endl
-		<< "std::ostream & operator<<(std::ostream &o, " << name << " const &i);"
-		<< std::endl << std::endl << "#endif" << std::endl;
+		<< "std::ostream		&operator<<(std::ostream &o, " << name << " const &i);"
+		<< std::endl << std::endl << "#endif /* !" << header << " */" << std::endl;
 	ofs.close();
 }
 
@@ -37,19 +37,24 @@ void cppCanon(std::string name, std::string file)
 	std::ofstream ofs(file.c_str());
 
 	ofs << "#include \"" << name << ".hpp\"" << std::endl << std::endl
-		<< name << "::" << name << "(void) {" << std::endl
+		<< name << "::" << name << "(void)" << std::endl << "{" << std::endl
+		<< "	return;"
 		<< std::endl << "}" << std::endl << std::endl
-		<< name << "::" << name << "(" << name << " const &src) {" << std::endl
+		<< name << "::" << name << "(" << name << " const &src)" << std::endl
+		<< "{" << std::endl
 		<< "	*this = src;" << std::endl << "}" << std::endl << std::endl
-		<< name << "::~" << name << "(void) {" << std::endl
-		<< std::endl << "}" << std::endl << std::endl
-		<< "int " << name << "::getVal(void) const {" << std::endl
+		<< name << "::~" << name << "(void)" << std::endl << "{" << std::endl
+		<< "	return;" << std::endl << "}" << std::endl << std::endl
+		<< "int " << name << "::getVal(void) const" << std::endl
+		<< "{" << std::endl
 		<< "	return this->_val;" << std::endl << "}" << std::endl << std::endl
-		<< name << " & " << name << "::operator=(" << name << " const &rhs) {" << std::endl
+		<< name << "		&" << name << "::operator=(" << name << " const &rhs)"
+		<< std::endl << "{" << std::endl
 		<< "	if (this != &rhs)" << std::endl
-		<< "		this->_val = rhs.getVal();"
+		<< "		this->_val = rhs.getVal();" << std::endl
 		<< "	return *this;" << std::endl << "}" << std::endl << std::endl
-		<< "std::iostream & operator<<(std::iostream &o, " << name << " const &i) {"
+		<< "std::iostream		&operator<<(std::iostream &o, " << name
+		<< " const &i)" << std::endl << "{"
 		<< std::endl << "	o << i.getVal() << std::endl;" << std::endl
 		<< "	return o;" << std::endl << "}" << std::endl << std::endl;
 	ofs.close();
