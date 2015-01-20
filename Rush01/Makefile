@@ -1,17 +1,18 @@
 CPATH	= src
 OPATH	= obj
-HPATH	= includes -lncurses
-
-CC		= g++ $(FLAGS)
-FLAGS	= -Wall -Werror -Wextra
+HPATH	= includes -lncurses `pkg-config --libs gtk+-3.0`
+CC		= g++ -Wall -Werror -Wextra $(FLAGS)
+FLAGS	=  `pkg-config --cflags gtk+-3.0`
 
 NAME	= ft_gkrellm
 
 SRC		= main.cpp \
 		  Input.cpp \
-		  UsernameModule.cpp \
-		  Sysctl.cpp
-
+		  TodoModule.cpp \
+		  Sysctl.cpp \
+		  GTKDisplay.cpp \
+		  TimeModule.cpp \
+		  NCDisplay.cpp
 
 CFILE	= $(patsubst %,$(CPATH)/%, $(SRC))
 OFILE	= $(patsubst %.cpp,$(OPATH)/%.o, $(SRC))

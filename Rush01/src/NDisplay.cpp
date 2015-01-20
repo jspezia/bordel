@@ -13,7 +13,7 @@ NDisplay::NDisplay(std::string name) :
 }
 
 NDisplay::NDisplay(void) :
-	_name("System Montor"),
+	_name("System Monitor"),
 	_N(0)
 {
 	return ;
@@ -50,14 +50,14 @@ NDisplay				NDisplay::operator=(NDisplay &rhs)
 
 
 
-void				NDisplay::addQuote(std::string const &quotes)
+void				NDisplay::addQuote(std::string const quotes)
 {
 	this->_quotes.push_back(quotes);
 	this->_N += 1;
 	return ;
 }
 
-void				NDisplay::removeQuote(std::string const &quotes)
+void				NDisplay::removeQuote(std::string const quotes)
 {
 	std::list<std::string>::iterator	it;
 	std::list<std::string>::iterator	del;
@@ -76,17 +76,19 @@ void				NDisplay::removeQuote(std::string const &quotes)
 
 void				NDisplay::display(void)
 {
+	mvprintw(0, 20, this->_name.c_str());
+	std::string			str;
 
-
-	mvprintw(1, 1, this->_name.c_str());
-
-	int		i = 1;
+	int		i = 2;
 	std::list<std::string>::const_iterator	it;
 
 	for(it = this->_quotes.begin(); it != this->_quotes.end(); ++it)
 	{
 		i++;
-		mvprintw(i, 1, it->c_str());
+		mvprintw(i, 0, "||                    ||");
+		mvprintw(i, 5, it->c_str());
 	}
+	mvprintw(2, 0, "//====================\\\\");
+	mvprintw(6, 0, "\\\\====================//");
 
 }

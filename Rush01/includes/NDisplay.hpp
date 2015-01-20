@@ -11,8 +11,8 @@ public:
 	~NDisplay(void);
 
 	std::string		getName(void) const;
-	void			addQuote(std::string const &quote);
-	void			removeQuote(std::string const &quote);
+	void			addQuote(std::string const quote);
+	void			removeQuote(std::string const quote);
 	void			display(void);
 
 protected:

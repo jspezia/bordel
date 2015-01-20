@@ -1,36 +1,60 @@
-#include "UsernameModule.hpp"
+#include "TodoModule.hpp"
 #include "gkrellm.hpp"
 #include "Input.hpp"
 #include "Sysctl.hpp"
+#include "GTKDisplay.hpp"
+#include "TimeModule.hpp"
+#include "NCDisplay.hpp"
+#include "IMonitorDisplay.hpp"
 
-void		terminal(void)
+int			main(int ac, char **av)
 {
-	UsernameModule	mod1(1, 1);
-	Input			inst;
-
-	inst.init();
-	mod1.setInfo("fyadaba, fils de dictateur Nigerien");
-	while(42)
-	{
-		clear();
-		inst.manage();
-		mod1.displayTerm();
-		if (inst.getKey() == "Exit")
-			break;
-		refresh();
-		usleep(DELAY);
+	if (ac != 2) {
+		std::cout << "usage: " << av[0]
+			<< " [mode] (console / window)." << std::endl;
+		return 1;
 	}
-	inst.end();
-}
 
-
-
-int			main()
-{
-	Sysctl ctl;
+	Sysctl ctl(ac, av);
 	ctl.init();
 
-	terminal();
-	std::cout << ctl;
+	TodoModule		mod1(3, 1);
+	TodoModule		mod2(7, 1);
+	TodoModule		mod3(11, 1);
+	TimeModule		mod4(3, 30);
+	mlist			lst;
+
+	mod1.setInfo(ctl.getData("hostname"));
+	mod2.setInfo(ctl.getData("osrelease"));
+	mod3.setInfo(ctl.getData("ostype"));
+	lst.push_back(&mod1);
+	lst.push_back(&mod2);
+	lst.push_back(&mod3);
+	lst.push_back(&mod4);
+
+	std::string mode = av[1];
+	if (mode == "console") {
+		NCDisplay		dplay;
+		Input			inst;
+
+		inst.init();
+		while(42)
+		{
+			clear();
+			inst.manage();
+			dplay.display(lst);
+			if (inst.getKey() == "Exit")
+				break;
+			refresh();
+			usleep(DELAY);
+		}
+		inst.end();
+	}
+	else if (mode == "window") {
+		GTKDisplay test(&ctl);
+
+		mod4.update();
+		test.display(lst);
+	}
 	return (0);
 }

@@ -1,7 +1,9 @@
 #include "Sysctl.hpp"
 
-Sysctl::Sysctl() : _data(new smap) {
+Sysctl::Sysctl() {
+}
 
+Sysctl::Sysctl(int ac, char **av) : _ac(ac), _av(av), _data(new smap) {
 }
 
 Sysctl::Sysctl(Sysctl const &src) {
@@ -9,6 +11,14 @@ Sysctl::Sysctl(Sysctl const &src) {
 }
 
 Sysctl::~Sysctl() {
+}
+
+int	Sysctl::getAC() const {
+	return this->_ac;
+}
+
+char ** Sysctl::getAV() const {
+	return this->_av;
 }
 
 smap * Sysctl::getData() const {
@@ -20,7 +30,7 @@ std::string const & Sysctl::getData(std::string const &key) const {
 }
 
 void Sysctl::init() {
-	FILE 		*in;
+	FILE		*in;
 	char		buff[512];
 	std::string	info, res;
 
@@ -43,8 +53,11 @@ void Sysctl::init() {
 }
 
 Sysctl & Sysctl::operator=(Sysctl const &rhs) {
-	if (this != &rhs)
+	if (this != &rhs) {
+		this->_ac = rhs.getAC();
+		this->_av = rhs.getAV();
 		this->_data = rhs.getData();
+	}
 	return *this;
 }
 
