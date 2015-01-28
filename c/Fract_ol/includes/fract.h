@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/28 17:28:31 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/28 19:52:24 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FRACT_H
 
 
-# define W_HEIGHT	800
-# define W_WIDTH	800
+# define W_HEIGHT	1200
+# define W_WIDTH	1200
 
 # define KEY_UP		65362
 # define KEY_DOWN	65364
