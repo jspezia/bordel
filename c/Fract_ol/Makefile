@@ -6,28 +6,31 @@
 #    By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 19:10:49 by jspezia           #+#    #+#              #
-#    Updated: 2015/01/26 15:26:51 by jspezia          ###   ########.fr        #
+#    Updated: 2015/01/27 17:52:37 by jspezia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CPATH	= src
-OPATH	= obj
-HPATH	= includes
-LIBPATH	= ./libft
-HLIB	= $(LIBPATH)/includes
-LIB		= $(LIBPATH) -lft
-LIBA	= $(LIBPATH)/libft.a
+CPATH		= src
+OPATH		= obj
+HPATH		= includes
+LIBPATH		= ./libft
+HLIB		= $(LIBPATH)/includes
+LIB			= $(LIBPATH) -lft
+LIBA		= $(LIBPATH)/libft.a
 
-CC		= cc $(FLAGS) $(XFLAGS)
-FLAGS	= -Wall -Werror -Wextra
-XFLAGS	= -g -O2
+MLXPATH		= /usr/X11/lib
+MLX			= $(MLXPATH) -lXext -lX11 -lmlx
 
-NAME	= exec
+CC			= cc $(FLAGS) $(XFLAGS)
+FLAGS		= -Wall -Werror -Wextra
+XFLAGS		= -g -O2
 
-SRC		= main.c
+NAME		= exec
 
-CFILE	= $(patsubst %,$(CPATH)/%, $(SRC))
-OFILE	= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
+SRC			= main.c
+
+CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
+OFILE		= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
 
 # COLORS
 C_NO	= "\033[00m"
@@ -36,7 +39,7 @@ C_GOOD	= "\033[32m"
 all: $(NAME)
 
 $(NAME): $(OPATH) $(OFILE) $(LIBA)
-	@$(CC) -I $(HLIB) -I $(HPATH) -L $(LIB) $(OFILE) -o $(NAME)
+	@$(CC) -I $(HLIB) -I $(HPATH) -L $(LIB) -L $(MLX) $ $(OFILE) -o $(NAME)
 	@echo $(C_GOOD)Creation Executable$(C_NO)
 
 $(LIBA):
