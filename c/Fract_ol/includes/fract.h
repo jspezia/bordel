@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 15:01:51 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/28 19:52:24 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/29 11:36:48 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FRACT_H
 
 
-# define W_HEIGHT	1200
-# define W_WIDTH	1200
+# define W_HEIGHT	800
+# define W_WIDTH	800
 
 # define KEY_UP		65362
 # define KEY_DOWN	65364
@@ -29,12 +29,13 @@
 
 #include "libft.h"
 
-/*
-typedef enum		e_bool
-{
-	FALSE,
-	TRUE
-}					t_bool;*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <mlx.h>
+#include </usr/X11R6/include/X11/X.h>
+#include <unistd.h>
+
 
 typedef struct		s_img
 {
@@ -69,6 +70,19 @@ typedef struct		s_env
 	t_img			*img;
 	t_keys			*keys;
 	t_pt			*c;
+	t_pt			*origin;
+	int				*zoom;
 }					t_env;
+
+/*
+ *		criss_cross.c
+ */
+
+void		criss_cross(t_env *e, int (*ft)(double, double, t_pt *));
+int			fractal_julia(double x, double y, t_pt *c);
+double		module_i(double x, double y);
+void		my_pixel_put_to_image(t_img *img, int x, int y, int color);
+int			key_release(int keycode, t_env *e);
+t_img		*create_new_image(t_env *e, int width, int height);
 
 #endif

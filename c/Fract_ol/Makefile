@@ -6,7 +6,7 @@
 #    By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/23 19:10:49 by jspezia           #+#    #+#              #
-#    Updated: 2015/01/27 17:52:37 by jspezia          ###   ########.fr        #
+#    Updated: 2015/01/29 11:36:50 by jspezia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ XFLAGS		= -g -O2
 
 NAME		= exec
 
-SRC			= main.c
+SRC			= main.c \
+			  criss_cross.c
 
 CFILE		= $(patsubst %,$(CPATH)/%, $(SRC))
 OFILE		= $(patsubst %.c,$(OPATH)/%.o, $(SRC))
