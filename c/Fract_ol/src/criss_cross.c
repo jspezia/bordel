@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/27 15:18:38 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/29 11:36:44 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/01/29 12:49:21 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ int			key_release(int keycode, t_env *e)
 	if (keycode == KEY_LEFT)
 		e->c->y -= RANGE;
 	if (keycode == KEY_SPACE)
-	{
 		printf("c = %f, %fi\n", e->c->x, e->c->y);
-	}
 	return (0);
 }
 
@@ -92,7 +90,7 @@ int			fractal_julia(int x, int y, t_env *e)
 	color = 0xeeeeee;
 	coord_x = (double)x - (W_WIDTH / 2 + e->origin->x) * e->zoom;
 	coord_y = (double)y - (W_HEIGHT / 2 + e->origin->y) * e->zoom;
-	a = 
+	while (coo)
 	return (color);
 }
 
