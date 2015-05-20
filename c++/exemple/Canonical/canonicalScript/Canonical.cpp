@@ -2,8 +2,11 @@
 #include <fstream>
 #include <iostream>
 
-void hppCanon(std::string name, std::string file)
+void hppCanon(std::string name, std::string ext)
 {
+	std::string		file;
+
+	file = name + ext + ".hpp";
 	std::ofstream ofs(file.c_str());
 
 	std::string header = "";
@@ -12,7 +15,7 @@ void hppCanon(std::string name, std::string file)
 		char c = toupper(name[i]);
 		header.push_back(c);
 	}
-	header += "_H";
+	header += "_HPP";
 
 	ofs << "#ifndef " << header << std::endl
 		<< "# define " << header << std::endl << std::endl
@@ -28,15 +31,18 @@ void hppCanon(std::string name, std::string file)
 		<< "	int _val;" << std::endl
 		<< std::endl << "};" << std::endl << std::endl
 		<< "std::ostream		&operator<<(std::ostream &o, " << name << " const &i);"
-		<< std::endl << std::endl << "#endif /* !" << header << " */" << std::endl;
+		<< std::endl << std::endl << "#endif" << std::endl;
 	ofs.close();
 }
 
-void cppCanon(std::string name, std::string file)
+void cppCanon(std::string name, std::string ext)
 {
+	std::string		file;
+
+	file = name + ext + ".cpp";
 	std::ofstream ofs(file.c_str());
 
-	ofs << "#include \"" << name << ".hpp\"" << std::endl << std::endl
+	ofs << "#include \"" << name << ext << ".hpp\"" << std::endl << std::endl
 		<< name << "::" << name << "(void)" << std::endl << "{" << std::endl
 		<< "	return;"
 		<< std::endl << "}" << std::endl << std::endl
@@ -64,12 +70,12 @@ int main(int ac, char **av)
 {
 	if (ac > 1 && ac < 4)
 	{
-		std::string ext = "";
+		std::string ext = ".class";
 		if (ac == 3)
 			ext = av[2];
 
-		hppCanon(av[1], av[1] + ext + ".hpp");
-		cppCanon(av[1], av[1] + ext + ".cpp");
+		hppCanon(av[1], ext);
+		cppCanon(av[1], ext);
 	}
 	else
 		std::cout << "usage: " << av[0] << " <ClassName> [<extName>]" << std::endl;
