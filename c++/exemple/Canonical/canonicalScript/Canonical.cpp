@@ -59,7 +59,7 @@ void cppCanon(std::string name, std::string ext)
 		<< "	if (this != &rhs)" << std::endl
 		<< "		this->_val = rhs.getVal();" << std::endl
 		<< "	return *this;" << std::endl << "}" << std::endl << std::endl
-		<< "std::iostream		&operator<<(std::iostream &o, " << name
+		<< "std::ostream		&operator<<(std::ostream &o, " << name
 		<< " const &i)" << std::endl << "{"
 		<< std::endl << "	o << i.getVal() << std::endl;" << std::endl
 		<< "	return o;" << std::endl << "}" << std::endl << std::endl;
